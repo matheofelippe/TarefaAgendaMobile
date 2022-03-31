@@ -14,28 +14,28 @@
 
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/txtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Nome" />
+            android:hint="@string/nome" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/txtAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Altura(1,80m)" />
+            android:hint="@string/altura_1_80m" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName6"
+            android:id="@+id/txtNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Data de Nascimento(DD/MM/AAAA)"/>
+            android:hint="@string/data_de_nascimento_dd_mm_aaaa"/>
     </LinearLayout>
 
 </ScrollView>
