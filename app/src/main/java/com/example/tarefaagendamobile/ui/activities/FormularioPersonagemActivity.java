@@ -1,6 +1,8 @@
 package com.example.tarefaagendamobile.ui.activities;
 
 
+import static com.example.tarefaagendamobile.ui.activities.ConstatesActivities.CHAVE_PERSONAGEM;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +53,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         inicializacaoCampos();
         //configuraBotaoSalvar();
         carregaPersonagem();
-        checaPermissoes();
+        //checaPermissoes();
     }
 
     private void carregaPersonagem() {
@@ -64,6 +66,9 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
             setTitle(TITULO_APPBAR_NOVO_PERSONAGEM);
             personagem = new Personagem();
         }
+    }
+
+    private void getTitle(String tituloAppbarEditaPersonagem) {
     }
 
     private void preenchaCampos() {

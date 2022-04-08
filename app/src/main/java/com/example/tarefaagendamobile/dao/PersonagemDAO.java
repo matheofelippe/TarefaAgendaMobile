@@ -2,10 +2,46 @@ package com.example.tarefaagendamobile.dao;
 
 import com.example.tarefaagendamobile.model.Personagem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonagemDAO {
-    public Personagem todos() {
+
+    private final static List<Personagem> personagens = new ArrayList<>();
+    private static int contadorDeIds = 1;
+
+    public void salva(Personagem personagemSalvo){
+        personagemSalvo.setId(contadorDeIds);
+        personagens.add(personagemSalvo);
+        atualizaId();
     }
 
+    private void atualizaId() {contadorDeIds++;}
+
+    private void edita(Personagem personagem){
+        Personagem personagemEncontrado = buscaPersonagemId(personagem);
+        if(personagemEncontrado != null){
+            int posicaoDoPersonagem = personagens.indexOf(personagemEncontrado);
+            personagens.set(posicaoDoPersonagem, personagem);
+        }
+    }
+
+    private Personagem buscaPersonagemId(Personagem personagem) {
+        for (Personagem p : personagens){
+            if (p.getId() == personagem.getId()){
+                return p;
+            }
+        }
+        return null;
+    }
+
+
+    public List<Personagem> todos() {return new ArrayList<>(personagens);}
+
     public void remove(Personagem personagem) {
+        Personagem personagemDevolvido = buscaPersonagemId(personagem);
+        if(personagemDevolvido != null){
+            personagens.remove(personagemDevolvido);
+        }
     }
 }

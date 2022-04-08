@@ -1,7 +1,8 @@
 package com.example.tarefaagendamobile.ui.activities;
 
+import static com.example.tarefaagendamobile.ui.activities.ConstatesActivities.CHAVE_PERSONAGEM;
+
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -86,14 +87,14 @@ public class ListaPersonagemActivity extends AppCompatActivity {
                             remove(personagemEscolhido);
                         }
                     })
-                    .setNegativeButton("Não", null);
+                    .setNegativeButton("Não", null)
                     .show();
         }
         return super.onContextItemSelected(item);
     }
 
     private void configuraLista() {
-        ListView listaDePersonagem = findViewById(R.id.activity_lista_personagem_menu);
+        ListView listaDePersonagem = findViewById(R.id.activity_lista_personagem_menu_remover);
         configuraAdaptor(listaDePersonagem);
         configuraItemPorClique(listaDePersonagem);
         registerForContextMenu(listaDePersonagem);
@@ -102,7 +103,7 @@ public class ListaPersonagemActivity extends AppCompatActivity {
 
 
     private void configuraItemPorClique(ListView listaDePersonagem) {
-        listaDePersonagem.setOnClickListener(new AdapterView.OnItemClickListener(){
+        listaDePersonagem.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long id){
                 Personagem personagemEscolhido = (Personagem) adapterView.getItemAtPosition(posicao);
