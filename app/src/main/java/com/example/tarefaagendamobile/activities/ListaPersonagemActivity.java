@@ -41,7 +41,10 @@ public class ListaPersonagemActivity extends AppCompatActivity {
         FloatingActionButton botaoNovoPersonagem = findViewById(R.id.fab_abb);
         botaoNovoPersonagem.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){ abreFormulario();}
+            public void onClick(View view){
+                abreFormulario();
+            }
+
         });
     }
 
@@ -55,16 +58,19 @@ public class ListaPersonagemActivity extends AppCompatActivity {
         atualizaPersonagem();
     }
 
+    //metodo pra atualizar o personagem
     private void atualizaPersonagem() {
         adapter.clear();
         adapter.addAll(dao.todos());
     }
 
+    //metodo pra remover personagem
     private void remove(Personagem personagem){
         dao.remove(personagem);
         adapter.remove(personagem);
     }
 
+    //expandindo menu dos personagens
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -94,7 +100,7 @@ public class ListaPersonagemActivity extends AppCompatActivity {
     }
 
     private void configuraLista() {
-        ListView listaDePersonagem = findViewById(R.id.activity_lista_personagem_menu_remover);
+        ListView listaDePersonagem = findViewById(R.id.lista_pensonagem_activity);
         configuraAdaptor(listaDePersonagem);
         configuraItemPorClique(listaDePersonagem);
         registerForContextMenu(listaDePersonagem);
@@ -112,6 +118,7 @@ public class ListaPersonagemActivity extends AppCompatActivity {
         });
     }
 
+    //Edita formulario
     private void abreFormularioEditar(Personagem personagemEscolhido) {
         Intent vaiParaFormulario = new Intent(ListaPersonagemActivity.this, FormularioPersonagemActivity.class);
         vaiParaFormulario.putExtra(CHAVE_PERSONAGEM, personagemEscolhido);

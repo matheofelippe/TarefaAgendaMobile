@@ -20,20 +20,24 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 public class FormularioPersonagemActivity extends AppCompatActivity {
 
+    //Cria variaveis com titulos, campos e variavel pra guardar o personagem
     private static final String TITULO_APPBAR_EDITA_PERSONAGEM = "Editar o Personagem";
     private static final String TITULO_APPBAR_NOVO_PERSONAGEM = "Novo Personagem";
     private EditText campoNome;
     private EditText campoNascimento;
     private EditText campoAltura;
+    //Variavel da classe personagem DAO
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
+    //Cria o metodo onCreateOptionsMenu para criar o menu com as opções de seleção
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.activity_formulario_personagem_menu_salvar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Cria o metodo onOptionsItemSelected para selecionar o item no menu previamente criado e finaliza ele
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int itemId = item.getItemId();
@@ -44,8 +48,25 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     }
 
     private void finalizarFormulario() {
+        preencherPersonagem();
+        if(personagem.idValido()){
+            dao.edita(personagem);
+            finish();
+        }else{
+            dao.salva(personagem);
+        }
     }
 
+    private void preencherPersonagem() {
+        String nome = campoNome.getText().toString();
+        String altura = campoNome.getText().toString();
+        String nascimento = campoNome.getText().toString();
+        personagem.setNome(nome);
+        personagem.setAltura(altura);
+        personagem.setNascimento(nascimento);
+    }
+
+    //Metodo que
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -56,12 +77,13 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         //checaPermissoes();
     }
 
+    //Cria o metodo carregaPersonagem pra "puxar" as informações do personagem
     private void carregaPersonagem() {
         Intent dados = getIntent();
         if(dados.hasExtra(CHAVE_PERSONAGEM)){
             getTitle(TITULO_APPBAR_EDITA_PERSONAGEM);
             personagem = (Personagem) dados.getSerializableExtra(CHAVE_PERSONAGEM);
-            preenchaCampos();
+            preencheCampos();
         }else{
             setTitle(TITULO_APPBAR_NOVO_PERSONAGEM);
             personagem = new Personagem();
@@ -71,12 +93,14 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     private void getTitle(String tituloAppbarEditaPersonagem) {
     }
 
-    private void preenchaCampos() {
+    //preencehr os campos com os dados recebidos
+    private void preencheCampos() {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
     }
 
+    //Salva os dados digitados e salva nessas variaveis
     private void inicializacaoCampos(){
         campoNome = findViewById(R.id.editText_nome);
         campoAltura = findViewById(R.id.editText_altura);
