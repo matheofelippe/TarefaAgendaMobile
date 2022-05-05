@@ -18,7 +18,7 @@ public class PersonagemDAO {
 
     private void atualizaId() {contadorDeIds++;}
 
-    private void edita(Personagem personagem){
+    public void edita(Personagem personagem){
         Personagem personagemEncontrado = buscaPersonagemId(personagem);
         if(personagemEncontrado != null){
             int posicaoDoPersonagem = personagens.indexOf(personagemEncontrado);

@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TarefaAgendaMobile">
         <activity android:name=".activities.FormularioPersonagemActivity"/>
-        <activity android:name=".activities.ListaPersonagemActivity">
-            android:name=".MainActivity"
+        <activity android:name=".activities.ListaPersonagemActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
